@@ -1,0 +1,1 @@
+sudo apt-get install cmake-qt-gui
