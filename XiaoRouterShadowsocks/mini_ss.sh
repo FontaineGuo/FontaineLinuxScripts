@@ -12,7 +12,8 @@ if [[ $EUID -ne 0 ]]; then
 fi
 cd /tmp
 rm -f shadowsocks_mini.tar.gz
-wget https://github.com/FontaineGuo/FontaineLinuxScripts/raw/master/XiaoRouterShadowsocks/shadowsocks_mini.tar.gz
+wget https://github.com/FontaineGuo/FontaineLinuxScripts/blob/master/XiaoRouterShadowsocks/shadowsocks_mini.tar.gz?raw=true
+mv shadowsocks_mini.tar.gz?raw=true  shadowsocks_mini.tar.gz
 tar zxf shadowsocks_mini.tar.gz
 
 # install shadowsocks ss-redir to /data/usr/sbin
