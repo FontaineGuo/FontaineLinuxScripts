@@ -105,7 +105,7 @@ cat > /etc/shadowsocks.json<<-EOF
 }
 EOF
 systemctl start firewalld
-i = 0
+i=0
 # open the firewall port
 while((${i} < ${usrNum}))
 do
