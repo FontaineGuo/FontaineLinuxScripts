@@ -41,7 +41,7 @@ cat > /etc/shadowsocks.json<<-EOF
 	"server_port":${serverport},
 	"local_address": "127.0.0.1",
 	"local_port":1080,
-	"password":${shadowsockspwd},
+	"password":"${shadowsockspwd}",
 	"timeout":300,
 	"method":"${method}",
 	"fast_open": false
