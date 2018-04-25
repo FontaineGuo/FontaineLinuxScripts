@@ -23,14 +23,14 @@ sudo apt-get -y autoremove
 # 2. Install the dependencies
 
 # Build tools:
-sudo apt-get install -y build-essential checkinstall cmake pkg-config yasm
-sudo apt-get install git gfortran
+# Build tools:
+sudo apt-get install -y build-essential cmake
 
-# GUI
-sudo apt-get install -y qt5-default libvtk6-dev libgtk2.0-dev
+# GUI (if you want to use GTK instead of Qt, replace 'qt5-default' with 'libgtkglext1-dev' and remove '-DWITH_QT=ON' option in CMake):
+sudo apt-get install -y qt5-default libvtk6-dev
 
 # Media I/O:
-sudo apt-get install -y zlib1g-dev libjpeg-dev libwebp-dev libpng-dev libtiff5-dev libjasper-dev libopenexr-dev libgdal-dev libjpeg8-dev libjasper-dev libpng12-dev
+sudo apt-get install -y zlib1g-dev libjpeg-dev libwebp-dev libpng-dev libtiff5-dev libjasper-dev libopenexr-dev libgdal-dev
 
 # Video I/O:
 sudo apt-get install -y libdc1394-22-dev libavcodec-dev libavformat-dev libswscale-dev libtheora-dev libvorbis-dev libxvidcore-dev libx264-dev yasm libopencore-amrnb-dev libopencore-amrwb-dev libv4l-dev libxine2-dev
@@ -47,11 +47,23 @@ sudo apt-get install -y ant default-jdk
 # Documentation:
 sudo apt-get install -y doxygen
 
-# 3. Install python environment
-sudo apt-get install python-dev python-pip python3-dev python3-pip
-sudo -H pip3 install -U pip numpy
 
-# 4. Install python virtualEnvironment
+
+sudo apt-get install -y libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev
+sudo apt-get install -y libgtk2.0-dev 
+sudo apt-get install -y libatlas-base-dev
+sudo apt-get install -y libfaac-dev libmp3lame-dev 
+sudo apt-get install -y libopencore-amrnb-dev libopencore-amrwb-dev
+sudo apt-get install -y x264 v4l-utils
+ 
+# Optional dependencies
+sudo apt-get install -y libprotobuf-dev protobuf-compiler
+sudo apt-get install -y libgoogle-glog-dev libgflags-dev
+sudo apt-get install -y libgphoto2-dev  libhdf5-dev 
+
+
+
+# 3. Install python virtualEnvironment
 sudo pip3 install virtualenv virtualenvwrapper
 
 # write the following to the /.bashrc
@@ -84,17 +96,21 @@ mv opencv_contrib-${OPENCV_VERSION} Opencv_contrib
 cd OpenCV
 mkdir build
 cd build
-cmake -DCMAKE_BUILD_TYPE=RELEASE
-	  -DWITH_QT=ON 
-	  -DWITH_OPENGL=ON 
-	  -DFORCE_VTK=ON 
-	  -DWITH_TBB=ON
-	  -DWITH_V4L=ON 
-	  -DWITH_GDAL=ON 
-	  -DWITH_XINE=ON 
-	  -DBUILD_EXAMPLES=ON 
-	  -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules
+
+
+cmake -DCMAKE_BUILD_TYPE=RELEASE\
+	  -DCMAKE_INSTALL_PREFIX=/usr/local\
+	  -DWITH_QT=ON\
+	  -DWITH_OPENGL=ON\
+	  -DFORCE_VTK=ON\
+	  -DWITH_TBB=ON\
+	  -DWITH_V4L=ON\
+	  -DWITH_GDAL=ON\
+	  -DWITH_XINE=ON\
+	  -DBUILD_EXAMPLES=ON\
+	  -DOPENCV_EXTRA_MODULES_PATH=../../Opencv_contrib/modules\
 	  -DENABLE_PRECOMPILED_HEADERS=OFF ..
 make -j4
 sudo make install
+sudo sh -c 'echo "/usr/local/lib" >> /etc/ld.so.conf.d/opencv.conf'
 sudo ldconfig
