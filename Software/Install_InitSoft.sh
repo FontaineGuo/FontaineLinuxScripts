@@ -12,7 +12,9 @@ sudo apt-get install tree
 # 3. install python
 echo "Install python"
 sudo apt-get update
-sudo apt-get install -y python-dev python-tk python-numpy python3-dev python3-tk python3-numpy python3-pip
+sudo apt-get install -y python-dev python-tk python-numpy python-pip python3-dev python3-tk python3-numpy python3-pip
+sudo -H pip3 install --upgrade pip
+sudo -H pip2 install --upgrade pip
 sudo pip3 install virtualenvwrapper virtulenv numpy scipy matplotlib scikit-image scikit-learn ipython
 
 # 4. install tsocks
