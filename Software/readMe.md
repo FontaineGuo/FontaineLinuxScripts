@@ -57,7 +57,10 @@ export WORKON_HOME=/home/fontaineguo/.virtualenvs
 export PROJECT_HOME=/home/fontaineguo/Devel
 source /usr/local/bin/virtualenvwrapper.sh
 
-
+### 如果找不到virtualenvwrapper模组，修改路径
+```
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.5 （以此类推每个版本）
+```
 ### 执行
 source ~/.bashrc
 ```
