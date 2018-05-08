@@ -12,18 +12,13 @@ sudo apt-get install tree
 # 3. install python
 echo "Install python"
 sudo apt-get update
-sudo apt-get install python-dev python-pip python3-dev python3-pip
-sudo -H pip3 install -U pip numpy
+sudo apt-get install -y python-dev python-tk python-numpy python3-dev python3-tk python3-numpy python3-pip
 sudo pip3 install virtualenvwrapper virtulenv numpy scipy matplotlib scikit-image scikit-learn ipython
 
 # 4. install tsocks
 echo "Install tsocks"
 sudo apt-get install tsocks
 
-# 5. install virtualenvwrapper virtulenv
-echo "install virtualenvwrapper virtulenv"
-sudo pip3 install virtualenvwrapper virtulenv
 
-
-# 6. software-properties-common
+# 5. software-properties-common
 apt-get install software-properties-common
