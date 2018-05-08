@@ -22,6 +22,11 @@ tsocks wget .....
 
 ### virtualenvwrapper&virtulenv
 
+先查询python的路径
+```
+whereis python
+```
+
 当你需要使用Python2开发项目时，建立一个Python2的虚拟环境：
 ```
 $ mkvirtualenv -p /usr/bin/python2 env27
@@ -46,6 +51,12 @@ sudo vi ~/.bashrc
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
 source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+
+### 本地样例
+export WORKON_HOME=/home/fontaineguo/.virtualenvs
+export PROJECT_HOME=/home/fontaineguo/Devel
+source /usr/local/bin/virtualenvwrapper.sh
+
 
 ### 执行
 source ~/.bashrc
