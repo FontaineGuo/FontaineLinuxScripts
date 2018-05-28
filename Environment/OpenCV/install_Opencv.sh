@@ -88,12 +88,13 @@ unzip ${OPENCV_VERSION}.zip
 rm ${OPENCV_VERSION}.zip
 mv opencv-${OPENCV_VERSION} OpenCV
 
+cd OpenCV
+
 wget https://github.com/opencv/opencv_contrib/archive/${OPENCV_VERSION}.zip
 unzip ${OPENCV_VERSION}.zip
 rm ${OPENCV_VERSION}.zip
 mv opencv_contrib-${OPENCV_VERSION} Opencv_contrib
 
-cd OpenCV
 mkdir build
 cd build
 
@@ -108,9 +109,9 @@ cmake -DCMAKE_BUILD_TYPE=RELEASE\
 	  -DWITH_GDAL=ON\
 	  -DWITH_XINE=ON\
 	  -DBUILD_EXAMPLES=ON\
-	  -DOPENCV_EXTRA_MODULES_PATH=../../Opencv_contrib/modules\
+	  -DOPENCV_EXTRA_MODULES_PATH=../Opencv_contrib/modules\
 	  -DENABLE_PRECOMPILED_HEADERS=OFF ..
 make -j4
 sudo make install
 sudo sh -c 'echo "/usr/local/lib" >> /etc/ld.so.conf.d/opencv.conf'
-sudo ldconfig
+sudo libhdf5-devconfig
