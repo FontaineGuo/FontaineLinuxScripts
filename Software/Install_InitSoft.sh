@@ -28,5 +28,10 @@ sudo pip3 install virtualenvwrapper virtulenv
 # 6. software-properties-common
 sudo apt-get install software-properties-common
 
+# 7. svn
+sudo apt-get install -y subversion
+
+
 # 7.install lib
 sudo apt-get -y install libboost-dev
+
