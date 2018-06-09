@@ -23,7 +23,7 @@ sudo apt-get install tsocks
 
 # 5. install virtualenvwrapper virtulenv
 echo "install virtualenvwrapper virtulenv"
-sudo pip3 install virtualenvwrapper virtulenv
+sudo pip3 install virtualenv virtualenvwrapper
 
 # write the following to the /.bashrc
 ######################################
