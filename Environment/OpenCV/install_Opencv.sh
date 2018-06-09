@@ -66,18 +66,6 @@ sudo apt-get install -y libgphoto2-dev  libhdf5-dev
 # 3. Install python virtualEnvironment
 sudo pip3 install virtualenv virtualenvwrapper
 
-# write the following to the /.bashrc
-######################################
-# "# Virtual Environment Wrapper" 
-# export WORKON_HOME=$HOME/.virtualenvs
-# export PROJECT_HOME=$HOME/Devel
-# source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
-######################################
-echo "# Virtual Environment Wrapper"  >> ~/.bashrc
-echo "export WORKON_HOME=$HOME/.virtualenvs" >> ~/.bashrc
-echo "export PROJECT_HOME=$HOME/Devel" >> ~/.bashrc
-echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc
-source ~/.bashrc
 
 # 4. INSTALL THE LIBRARY
 
