@@ -34,7 +34,7 @@ sudo apt-get install -y zlib1g-dev libjpeg-dev libwebp-dev libpng-dev libtiff5-d
 
 # Video I/O:
 sudo apt-get install -y libdc1394-22-dev libavcodec-dev libavformat-dev libswscale-dev libtheora-dev libvorbis-dev libxvidcore-dev libx264-dev yasm libopencore-amrnb-dev libopencore-amrwb-dev libv4l-dev libxine2-dev
-
+sudo apt-get install -y ffmpeg
 # Parallelism and linear algebra libraries:
 sudo apt-get install -y libtbb-dev libeigen3-dev
 
@@ -96,10 +96,12 @@ cmake -DCMAKE_BUILD_TYPE=RELEASE\
 	  -DWITH_V4L=ON\
 	  -DWITH_GDAL=ON\
 	  -DWITH_XINE=ON\
+	  -DWITH_FFMPEG=ON\
 	  -DBUILD_EXAMPLES=ON\
+	  -DWITH_LIBV4L=ON\
 	  -DOPENCV_EXTRA_MODULES_PATH=../Opencv_contrib/modules\
 	  -DENABLE_PRECOMPILED_HEADERS=OFF ..
 make -j4
 sudo make install
 sudo sh -c 'echo "/usr/local/lib" >> /etc/ld.so.conf.d/opencv.conf'
-sudo libhdf5-devconfig
+sudo apt-get install libhdf5-devconfig
