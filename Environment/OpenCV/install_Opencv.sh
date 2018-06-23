@@ -64,7 +64,7 @@ sudo apt-get install -y libgphoto2-dev  libhdf5-dev
 
 
 # 3. Install python virtualEnvironment
-sudo pip3 install virtualenv virtualenvwrapper
+# sudo pip3 install virtualenv virtualenvwrapper
 
 
 # 4. INSTALL THE LIBRARY
