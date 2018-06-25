@@ -16,6 +16,7 @@ sudo apt-get install python-dev python-pip python3-dev python3-pip
 sudo -H pip3 install -U pip numpy
 sudo -H pip2 install -U pip numpy
 sudo pip3 install numpy scipy matplotlib scikit-image scikit-learn ipython
+sudo pip2 install numpy scipy matplotlib scikit-image scikit-learn ipython
 
 # 4. install tsocks
 echo "Install tsocks"
@@ -24,6 +25,7 @@ sudo apt-get install tsocks
 # 5. install virtualenvwrapper virtulenv
 echo "install virtualenvwrapper virtulenv"
 sudo pip3 install virtualenv virtualenvwrapper
+sudo pip2 install virtualenv virtualenvwrapper
 
 # write the following to the /.bashrc
 ######################################
@@ -48,4 +50,7 @@ sudo apt-get install -y subversion
 
 # 7.install lib
 sudo apt-get -y install libboost-dev
+
+# 8.install gcc7 && g++ 7
+sudo apt-get -y install gcc-7 g++-7
 
