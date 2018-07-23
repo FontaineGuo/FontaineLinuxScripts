@@ -104,4 +104,5 @@ cmake -DCMAKE_BUILD_TYPE=RELEASE\
 make -j4
 sudo make install
 sudo sh -c 'echo "/usr/local/lib" >> /etc/ld.so.conf.d/opencv.conf'
-sudo apt-get install libhdf5-devconfig
+sudo ldconfig
+sudo apt-get install libhdf5-dev
