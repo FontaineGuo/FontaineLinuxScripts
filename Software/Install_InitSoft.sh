@@ -54,3 +54,9 @@ sudo apt-get -y install libboost-dev
 # 8.install gcc7 && g++ 7
 sudo apt-get -y install gcc-7 g++-7
 
+# install gparted
+sudo apt-get -y install gparted
+
+# install libgnome-keyring0 for gitkraken
+sudo apt install libgnome-keyring0
+
