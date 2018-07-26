@@ -60,3 +60,6 @@ sudo apt-get -y install gparted
 # install libgnome-keyring0 for gitkraken
 sudo apt install libgnome-keyring0
 
+# install fcitx-bin
+sudo apt-get install fcitx-bin
+
