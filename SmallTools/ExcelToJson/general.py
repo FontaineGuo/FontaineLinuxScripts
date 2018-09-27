@@ -3,21 +3,17 @@ import os
 # create project dir   
 def create_project_dir(directory):
     if not os.path.isdir(directory):
-        print("creating project")
+        print("creating project " + directory)
         os.mkdir(directory)
 
 # create json
-def create_json(project_name, excel_name):
+def create_json(project_name, excel_name, data):
     file_name = project_name + '/' +  excel_name + '.json'
 
-    if not os.path.isfile(file_name):
-        write_file(file_name, '')
+    with open(file_name, 'w' ) as f:
+         f.write(data)
 
-# write file 
-def write_file(path, data):
-    f = open(path, 'w')
-    f.write(data)
-    f.close()
+
 
 # delete file content
 def delete_file_content(path):
