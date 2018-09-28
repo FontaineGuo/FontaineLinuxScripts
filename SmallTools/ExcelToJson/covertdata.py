@@ -15,7 +15,7 @@ def get_type_name_info(TypeNamePair):
     if "Arr" in TypeNamePair:
         spilted_list = TypeNamePair.split(':')
         demension_spilt = spilted_list[2:]
-        return [spilted_list[0], spilted_list[1], len(demension_spilt)]
+        return [spilted_list[0], spilted_list[1], demension_spilt]
     else:
         type_name_pair =  TypeNamePair.split('-')
         return type_name_pair
@@ -35,31 +35,47 @@ def convert_data_to_json(value_type_list, value_list):
     ID = value_list[0]
     single_row_dic = OrderedDict()
     final_dic = OrderedDict()
+
     for type, value in zip(value_type_list[1:], value_list[1:]):
-       out = get_value_by_type(get_type_name_info(type)[0])
-       single_row_dic[get_type_name_info(type)[1]] = out(value)
+        type_name_info = get_type_name_info(type)
+        if 'Arr' in type_name_info[0]:
+            single_row_dic[type_name_info[1]] = get_format_array_data_list(
+                type_name_info[0], type_name_info[2], len(type_name_info[2]), value
+            )
+        else:
+            out = get_value_by_type(type_name_info[0])
+            single_row_dic[type_name_info[1]] = out(value)
+
     final_dic[str(int(ID))] = single_row_dic
     return final_dic
 
+# get format array data list
+def get_format_array_data_list(type, array_char_list, dememsion_num,  value_list):
+    out = get_value_by_type(type)
+    if dememsion_num == 1:
+        temp_list = array_char_list.spilt(array_char_list[0])
+        data_list = []
+        for ele in temp_list:
+            data_list.append(out(ele))
+        return data_list
+    else:
+        get_format_array_data_list(type, array_char_list[1:], dememsion_num-1, value_list)
+
+# convert data to the right type
 def get_value_by_type(datatype):
     def get_value(data):
-        if 'Arr' in datatype:
-            element_type = datatype.split('Arr')[0]
-            #TODO : convert array
-            return 0
-        else:
-            if datatype == 'string':
-                return str(data)
-            if datatype == 'int':
-                return int(data)
-            if datatype == 'bool':
-                return str(data).lower()
-            if datatype == 'float':
-                return float(data)
-            if datatype == 'double':
-                return np.float64(data)
-            if datatype == 'long':
-                return int(data)
+        if datatype == 'string':
+            return str(data)
+        if datatype == 'int':
+            return int(data)
+        if datatype == 'bool':
+            return str(data).lower()
+        if datatype == 'float':
+            return float(data)
+        if datatype == 'double':
+            return np.float64(data)
+        if datatype == 'long':
+            return int(data)
     return get_value
 
 
