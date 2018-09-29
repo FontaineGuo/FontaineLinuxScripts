@@ -6,9 +6,8 @@ import json
 key_type = ['int', '']
 
 # get all the key from left to right
-def get_key_name(worksheet):
-    sh = worksheet.sheet_by_index(0)
-    return sh.row_values(0)
+def get_key_name(sheet):
+    return sheet.row_values(0)
 
 # get the key type
 def get_type_name_info(TypeNamePair):
@@ -19,12 +18,9 @@ def get_type_name_info(TypeNamePair):
     else:
         type_name_pair =  TypeNamePair.split('-')
         return type_name_pair
-# get the value and covert it by type
-def get_vaule(single_row_value_list):
-    return single_row_value_list
 
 # get the row by id
-def get_row_by_id(worksheet, id):
+def get_row_list_by_id(worksheet, id):
     return worksheet.sheet_by_index(0).row_values(id)
 
 # check if the id exits and is specific
@@ -34,32 +30,36 @@ def check_id_exsits(single_row):
 def convert_data_to_json(value_type_list, value_list):
     ID = value_list[0]
     single_row_dic = OrderedDict()
-    final_dic = OrderedDict()
+    # final_dic = OrderedDict()
 
     for type, value in zip(value_type_list[1:], value_list[1:]):
         type_name_info = get_type_name_info(type)
         if 'Arr' in type_name_info[0]:
             single_row_dic[type_name_info[1]] = get_format_array_data_list(
-                type_name_info[0], type_name_info[2], len(type_name_info[2]), value
-            )
+                get_value_by_type(type_name_info[0].split('Arr')[0]), type_name_info[2],  value)
         else:
             out = get_value_by_type(type_name_info[0])
             single_row_dic[type_name_info[1]] = out(value)
 
-    final_dic[str(int(ID))] = single_row_dic
-    return final_dic
+    # final_dic[str(int(ID))] = single_row_dic
+    return single_row_dic
 
 # get format array data list
-def get_format_array_data_list(type, array_char_list, dememsion_num,  value_list):
-    out = get_value_by_type(type)
-    if dememsion_num == 1:
-        temp_list = array_char_list.spilt(array_char_list[0])
-        data_list = []
-        for ele in temp_list:
-            data_list.append(out(ele))
-        return data_list
+def get_format_array_data_list(data_formatter, array_char_list,  value_list):
+    demension = len(array_char_list)
+    if demension == 1:
+        single_data_group = []
+        for single_data in value_list.split(array_char_list[0]):
+             single_data_group.append(data_formatter(single_data))
+        return single_data_group
     else:
-        get_format_array_data_list(type, array_char_list[1:], dememsion_num-1, value_list)
+        res = []
+        temp = value_list.split(array_char_list[0])
+        for index in range(0, len(temp)):
+            res.append(get_format_array_data_list(data_formatter, array_char_list[1:], temp[index]))
+        return res
+
+    
 
 # convert data to the right type
 def get_value_by_type(datatype):
