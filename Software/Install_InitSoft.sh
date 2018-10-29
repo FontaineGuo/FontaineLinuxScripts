@@ -63,3 +63,6 @@ sudo apt install libgnome-keyring0
 # install fcitx-bin
 sudo apt-get install fcitx-bin
 
+# install gparted
+sudo apt-get install gparted
+
