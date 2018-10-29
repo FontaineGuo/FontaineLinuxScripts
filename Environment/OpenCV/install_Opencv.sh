@@ -38,8 +38,8 @@ sudo apt-get install -y ffmpeg
 # Parallelism and linear algebra libraries:
 sudo apt-get install -y libtbb-dev libeigen3-dev
 
-# Python:
-sudo apt-get install -y python-dev python-tk python-numpy python3-dev python3-tk python3-numpy
+# if you are using anaconda , please skip this step ,  Python:
+# sudo apt-get install -y python-dev python-tk python-numpy python3-dev python3-tk python3-numpy
 
 # Java:
 sudo apt-get install -y ant default-jdk
