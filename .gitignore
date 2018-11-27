@@ -1,4 +1,6 @@
-
-SmallTools/ExcelToJson/.vscode
-SmallTools/ExcelToJson/__pycache__
+## ignore pycharm
+.idea
+## ignore vscode
+.vscode
+__pycache__
 
