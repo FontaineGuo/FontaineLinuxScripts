@@ -89,3 +89,13 @@ mktmpenv：创建临时运行环境
 lsvirtualenv: 列出可用的运行环境
 
 lssitepackages: 列出当前环境安装了的包
+
+------------------------------------------
+### proxychains
+
+```
+sudo vi /etc/proxychains.conf
+//add SOCKS5 127.0.0.1 1080 to the end of the file and delete SOCKS4 default
+
+//test proxychains curl www.google.com
+```
