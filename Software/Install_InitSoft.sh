@@ -66,3 +66,6 @@ sudo apt-get install fcitx-bin
 # install gparted
 sudo apt-get install gparted
 
+# install proxychains
+sudo apt-get install proxychains
+
