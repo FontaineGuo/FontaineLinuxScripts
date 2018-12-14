@@ -1,0 +1,3 @@
+find . -type f -execdir sed -i 's/UBUNTU_PKG_NAME = "nvidia-367"/UBUNTU_PKG_NAME = "nvidia-384"/g' '{}' \;
+
+# in ~/NVIDIA_CUDA-8.0_Samples/.
