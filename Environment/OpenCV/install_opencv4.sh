@@ -7,44 +7,44 @@ sudo apt-get -y upgrade
 sudo apt-get -y dist-upgrade
 sudo apt-get -y autoremove
 
-# install toolchains
-sudo apt-get install -y build-essential cmake unzip pkg-config unzip wget
 
-sudo apt-get install -y build-essential cmake
+ 
+## Install dependencies
+sudo apt -y install build-essential checkinstall cmake pkg-config yasm unzip wget
 
-# GUI (if you want to use GTK instead of Qt, replace 'qt5-default' with 'libgtkglext1-dev' and remove '-DWITH_QT=ON' option in CMake):
-sudo apt-get install -y qt5-default libvtk6-dev
-
-# Media I/O:
-sudo apt-get install -y zlib1g-dev libjpeg-dev libwebp-dev libpng-dev libtiff-dev libjasper-dev libopenexr-dev libgdal-dev
-
-# Video I/O:
-sudo apt-get install -y libdc1394-22-dev libavcodec-dev libavformat-dev libswscale-dev libtheora-dev libvorbis-dev libxvidcore-dev libx264-dev yasm libopencore-amrnb-dev libopencore-amrwb-dev libv4l-dev libxine2-dev
-sudo apt-get install -y ffmpeg
-# Parallelism and linear algebra libraries:
-sudo apt-get install -y libtbb-dev libeigen3-dev
-
-
-# Java:
-sudo apt-get install -y ant default-jdk
-
-# Documentation:
-sudo apt-get install -y doxygen
-
-# specific for 4.0
-sudo apt-get install -y libgtk-3-dev
-sudo apt-get install -y libatlas-base-dev gfortran
-sudo apt-get install -y libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev
-sudo apt-get install -y libgtk2.0-dev 
-sudo apt-get install -y libfaac-dev libmp3lame-dev 
-sudo apt-get install -y libopencore-amrnb-dev libopencore-amrwb-dev
-sudo apt-get install -y x264 v4l-utils
-
+sudo apt -y install git gfortran
+sudo apt -y install libjpeg8-dev libpng-dev
+ 
+sudo apt -y install software-properties-common
+sudo add-apt-repository "deb http://security.ubuntu.com/ubuntu xenial-security main"
+sudo apt -y update
+ 
+sudo apt -y install libjasper1
+sudo apt -y install libtiff-dev
+ 
+sudo apt -y install libavcodec-dev libavformat-dev libswscale-dev libdc1394-22-dev
+sudo apt -y install libxine2-dev libv4l-dev
+cd /usr/include/linux
+sudo ln -s -f ../libv4l1-videodev.h videodev.h
+cd "$cwd"
+ 
+sudo apt -y install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
+sudo apt -y install libgtk2.0-dev libtbb-dev qt5-default
+sudo apt -y install libatlas-base-dev
+sudo apt -y install libfaac-dev libmp3lame-dev libtheora-dev
+sudo apt -y install libvorbis-dev libxvidcore-dev
+sudo apt -y install libopencore-amrnb-dev libopencore-amrwb-dev
+sudo apt -y install libavresample-dev
+sudo apt -y install x264 v4l-utils
+ 
 # Optional dependencies
-sudo apt-get install -y libprotobuf-dev protobuf-compiler
-sudo apt-get install -y libgoogle-glog-dev libgflags-dev
-sudo apt-get install -y libgphoto2-dev  libhdf5-dev 
+sudo apt -y install libprotobuf-dev protobuf-compiler
+sudo apt -y install libgoogle-glog-dev libgflags-dev
+sudo apt -y install libgphoto2-dev libeigen3-dev libhdf5-dev doxygen
 
+sudo apt -y install python3-dev python3-pip
+sudo -H pip3 install -U pip numpy
+sudo apt -y install python3-testresources
 
 # install 
 proxychains wget https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip
@@ -63,8 +63,10 @@ mkdir build
 cd build
 
 
-proxychains cmake -DCMAKE_BUILD_TYPE=RELEASE\
+
+cmake -DCMAKE_BUILD_TYPE=RELEASE\
 	  -DCMAKE_INSTALL_PREFIX=/home/fontaine/LIB_Collections/OpenCV/4.0/install\
+	  -DOPENCV_GENERATE_PKGCONFIG=YES\
 	  -DWITH_QT=ON\
 	  -DWITH_OPENGL=ON\
 	  -DFORCE_VTK=ON\
@@ -76,7 +78,12 @@ proxychains cmake -DCMAKE_BUILD_TYPE=RELEASE\
 	  -DBUILD_EXAMPLES=ON\
 	  -DWITH_LIBV4L=ON\
 	  -DOPENCV_EXTRA_MODULES_PATH=../Opencv_contrib/modules\
-      -DPYTHON_EXECUTABLE=/home/fontaine/anaconda3/envs/py36/bin/python \
+      -DBUILD_opencv_python2=OFF \
+      -DBUILD_opencv_python3=ON \
+	  -DPYTHON_EXECUTABLE=/usr/bin/python \
+	  -DPYTHON3_EXECUTABLE=/usr/bin/python \
+	  -DINSTALL_C_EXAMPLES=OFF \
+	  -DINSTALL_C_EXAMPLES=OFF \
 	  -DENABLE_PRECOMPILED_HEADERS=OFF ..
 make -j4
 sudo make install
